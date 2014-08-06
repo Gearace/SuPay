@@ -1,0 +1,54 @@
+<!--
+  This template loads for the 'tab.login' state (app.js)
+-->
+<ion-view title="退费">
+    <div class="bar bar-subheader bar-light">
+        <div class="title">
+            <div class="row">
+                <div class="col">
+                    <p class="text-left">退单:
+                        <strong>{{currcst.feeid|limitTo:-6}}</strong>
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="text-right">手机:
+                        <strong>{{currcst.cellphone|number}}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ion-content class="has-subheader has-mySubfooter2" padding="true">
+        <div class="item item-divider">
+            <div class="row">
+                <div class="col">
+                    <p class="text-center">顾客：
+                        <strong>{{currcst.name}}</strong>
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="text-center">余额：
+                        <strong>￥{{currcst.amount|number:2}}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <ion-radio ng-repeat="refee in refees" ng-value="refee.AKC190" ng-model="currcst.feeid">
+            <p class="text-center">
+                {{refee.AAE036}}　～　
+                <strong ng-style="{color:'red'}">{{ refee.AMOUNT | currency:"￥"}}元</strong>
+            </p>
+        </ion-radio>
+    </ion-content>
+    <div class="bar bar-subfooter bar-big-footer2">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" maxlength="6" placeholder="请输入校验码">
+            </label>
+            <button class="button button-small button-outline button-energized">获取手机校验码</button>
+        </div>
+        <button class="button button-block button-assertive" ng-click="ConfirmRefee(currcst.feeid)">
+            确 认 退 费
+        </button>
+    </div>
+</ion-view>

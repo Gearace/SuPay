@@ -1,0 +1,48 @@
+<ion-view title="支付">
+    <ion-nav-buttons side="left">
+        <button class="button icon-left icon ion-ios7-arrow-back ion-ios7-cart" ng-click="returnCart()">
+            菜篮子
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-mySubfooter">
+        <div class="list ">
+            <div class="item item-divider">购物清单</div>
+            <div ng-repeat="item in payitems" item="item">
+                <div class="item">
+                     <h2>
+                        <strong class="text-center">{{ item.NAME }}</strong>
+                        {{item.num}}{{item.UNIT}}共计：{{item.amount|currency:"￥"}}元
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+    <div class="bar bar-subfooter bar-big-footer">
+        <div class="list">
+            <div class="item item-divider">支付确认</div>
+            <div class="item row">
+                <div class="col">
+                    <p class="text-center">汇总价格：
+                        <strong>{{totalamount|currency:"￥"}}元</strong>
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="text-center">支付账号：
+                        <strong>{{cellphone}}</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" maxlength="6" placeholder="请输入校验码">
+                </label>
+                <button class="button button-small button-outline button-energized">获取手机校验码</button>
+            </div>
+        </div>
+    </div>
+    <div class="bar bar-footer bar-assertive mybutton" ng-click="Payit()">
+        <p class="title">确认付款</p>
+    </div>
+
+</ion-view>

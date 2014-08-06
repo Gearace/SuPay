@@ -1,0 +1,57 @@
+<!--
+  This template loads for the 'tab.about' state (app.js)
+-->
+<ion-view title="当日收款明细">
+    <div id="search-box" class="bar bar-subheader bar-light item-input-inset">
+        <div class="item-input-wrapper">
+            <i class="icon ion-ios7-search placeholder-icon"></i>
+            <input type="search" placeholder="输入交易流水号检索" ng-model="search.AKC190" ng-trim>
+            <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
+        </div>
+    </div>
+    <ion-content class="has-subheader" padding="true">
+        <div ng-repeat="day in detail" item ="day" can-swipe="true">
+            <div class="item item-divider" >
+                <div class="row">
+                    <div class="col">
+                        <p class="text-center">
+                            <strong>{{day[0]|limitTo:8}}</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <ion-list>
+                <ion-item ng-repeat="item in day[1] | filter:search" item="item" can-swipe="true">
+                    <div class="row nopadding">
+                        <div class="col col-center onepxright">
+                            {{item.AKC190}}
+                        </div>
+                        <div class="col col-20">
+                            <div class="text-right">
+                                <strong ng-style="{color:'red'}">{{ item.AKC228|currency:"￥" }}元</strong>
+                            </div>
+                            <div class="text-right">
+                                <span ng-style="{color:'darkgray'}" }>{{item.CKC127|TransState}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+        <ion-item ng-click="loadmore()">
+                <div class="button-clear button-light text-center">
+                    点我加载更多
+                </div>
+        </ion-item>
+    </ion-content>
+    <ion-footer-bar class="bar-stable">
+        <div class="row">
+            <p class="col col-offset-10 col-33">柜员：
+                <strong>{{user.USER_NAME}}</strong>
+            </p>
+            <p class="col col-67">超市：
+                <strong>{{user.OGR_NAME}}</strong>
+            </p>
+        </div>
+    </ion-footer-bar>
+</ion-view>

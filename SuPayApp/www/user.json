@@ -1,0 +1,39 @@
+
+{
+    "_cas_refs": "53756afcfd546d981eaa7ca4",
+    "_cst_refs": "53756af2fd546d981eaa7ca0",
+    "_org_refs": "53756afcfd546d981eaa7ca3",
+    "amount": 0.28,
+    "MXLIST": [{
+        "_vgt_refs": "53756afcfd546d981eaa7cb6",
+        "perprice": "0.28",
+        "quantity": "1",
+        "totprice": "0.28"
+    }]
+}
+{
+    "USER_ID": "0001",
+    "USER_NAME": "张三",
+    "USER_PWD": "",
+    "USER_TYPE": "2",
+    "ORG_CODE": "00000001",
+    "OGR_NAME": "双宝菜篮子[西夏店]",
+    "UPDATE_DATETIME": "20140401 00:00:00",
+    "STATUS": "1"
+}
+[{
+    "code": "1112",
+    "name": "鲁璟洁",
+    "amount": 272.04,
+    "cellphone": 111
+}, {
+    "code": "1111",
+    "name": "邓亮",
+    "amount": 20.900000000000002,
+    "cellphone": 123
+}, {
+    "code": "1113",
+    "name": "张强",
+    "amount": 0,
+    "cellphone": 112
+}]

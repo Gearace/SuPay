@@ -1,0 +1,111 @@
+<ion-view title="菜篮子">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-navicon" ng-click="showBuyers()">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-trash-a" ng-click="clearAll()">
+        </button>
+        <button class="button button-assertive" ng-click="goPay()">
+            购买
+        </button>
+    </ion-nav-buttons>
+    <ion-side-menus>
+        <ion-side-menu-content drag-content="false">
+            <div id="search-box" class="bar bar-subheader bar-light item-input-inset">
+                <div class="item-input-wrapper">
+                    <i class="icon ion-ios7-search placeholder-icon"></i>
+                    <input type="search" placeholder="输入全拼音或首字母检索" ng-model="search.py" ng-trim>
+                    <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
+                </div>
+            </div>
+            <ion-content class="has-subheader" padding="true">
+                <div class="list">
+                    <div ng-repeat="product in products | filter:search" class="item nopadding">
+                        <div class="row row-center">
+                            <div class="col col-25">
+                                <div class="wrap">
+                                    <div class="photo">
+                                        <img class="VGT_item_thumb" ng-src="img/{{ product.CODE }}.png">
+                                        <span>
+                                            {{ product.NAME }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <h3>
+                                    <strong>{{product.PRICE|currency:"￥"}}元/{{product.UNIT}}</strong>
+                                </h3>
+                            </div>
+                            <div class="col col-67">
+                                <div class="list">
+                                    <label class="item item-input">
+                                        <span class="input-label">数量</span>
+                                        <input type="text" ng-model="product.num" ng-change="numChange(product)" ng-trim="true" ng-pattern="/^[0-9]+(.[0-9]{1,3})?$/" placeholder="点击此处录入斤数">
+                                    </label>
+
+                                    <label class="item item-input">
+                                        <span class="input-label">金额</span>
+                                        <input type="text" ng-model="product.amount" ng-change="amountChange(product)" ng-trim="true" ng-pattern="/^[0-9]+(.[0-9]{1,2})?$/" placeholder="点击此处录入总价">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col col-15">
+                                <label class="checkbox">
+                                    <input type="checkbox" ng-model="product.chk" ng-checked="product.chk" ng-change="checkChange(product)" ng-disabled="!product.chk" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-content>
+            <ion-footer-bar class="bar-stable">
+                <div class="row" ng-show=welmsg>
+                    <p class="col col-offset-20 col-33">顾客：
+                        <strong>{{currcst.NAME}}</strong>
+                    </p>
+                    <p class="col col-67">余额：
+                        <strong>{{currcst.BALANCE|currency:"￥"}}</strong>元
+                    </p>
+                </div>
+                <div class="col col-offset-25" ng-hide=welmsg>
+                    <strong>{{'请先点击左上角新增顾客信息!'}}</strong>
+                </div>
+            </ion-footer-bar>
+        </ion-side-menu-content>
+        <ion-side-menu side="left">
+            <ion-header-bar class="bar-assertive">
+                <h1 class="title">Left Menu</h1>
+            </ion-header-bar>
+            <ion-content>
+                <div class="text-center">
+                    <button class="button button-clear button-royal" ng-click="modal.show()">新顾客</button>
+                </div>
+                <ion-list show-delete="true">
+                    <ion-item ng-repeat="customer in allcsts" ui-sref="tab.cart({initFlag:{{customer.PHONE}}})">
+                        <ion-delete-button class="ion-minus-circled" ng-click="onDeleteCustomer(customer)"></ion-delete-button>
+                        用户：{{ customer.NAME }}
+                        <p class="text-center">
+                            <strong>余额：{{customer.BALANCE|currency:"￥"}}元</strong>
+                        </p>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+    <script id="modal.html" type="text/ng-template">
+        <div class="modal" ng-controller="ModalCtrl">
+            <ion-content>
+                <div class="padding">
+                    <div class="list">
+                        <label class="item item-input">
+                            <span class="input-label">手机号码</span>
+                            <input ng-model="newone.cellphone" type="number">
+                        </label>
+                        <button class="button button-full button-positive" ng-click="createCustomer()">确认</button>
+                    </div>
+                    <br/>
+                </div>
+            </ion-content>
+        </div>
+    </script>
+</ion-view>
